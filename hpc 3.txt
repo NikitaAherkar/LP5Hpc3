@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+// Function to find minimum value
+template<typename T>
+T find_min(const std::vector<T>& data) {
+    return *std::min_element(data.begin(), data.end());
+}
+
+// Function to find maximum value
+template<typename T>
+T find_max(const std::vector<T>& data) {
+    return *std::max_element(data.begin(), data.end());
+}
+
+// Function to find sum
+template<typename T>
+T find_sum(const std::vector<T>& data) {
+    T sum = 0;
+    for (const auto& element : data) {
+        sum += element;
+    }
+    return sum;
+}
+
+// Function to find average
+template<typename T>
+double find_average(const std::vector<T>& data) {
+    T sum = find_sum(data);
+    return static_cast<double>(sum) / data.size();
+}
+
+int main() {
+    std::vector<int> data;
+    int num_elements;
+    
+    std::cout << "Enter the number of elements: ";
+    std::cin >> num_elements;
+    
+    std::cout << "Enter " << num_elements << " integers:\n";
+    for (int i = 0; i < num_elements; ++i) {
+        int num;
+        std::cin >> num;
+        data.push_back(num);
+    }
+
+    // Find min, max, sum, and average
+    int min_val = find_min(data);
+    int max_val = find_max(data);
+    int sum = find_sum(data);
+    double average = find_average(data);
+
+    std::cout << "Minimum value: " << min_val << std::endl;
+    std::cout << "Maximum value: " << max_val << std::endl;
+    std::cout << "Sum: " << sum << std::endl;
+    std::cout << "Average: " << average << std::endl;
+
+    return 0;
+}
